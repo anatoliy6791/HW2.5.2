@@ -3,48 +3,51 @@ package pro.sky.HW_252;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     List<Employee> employees = new ArrayList<>();
-    int id = 0;
-
-
-
 
 
     @Override
     public Employee addEmployee(String fullName, int salary) {
-        Employee employee = new Employee(fullName,salary);
+        Employee employee = new Employee(fullName, salary);
+        for (int i = 0; i < employees.size(); i++) {
+            if(employees.get(i).getFullName().equals(fullName)
+                    && employees.get(i).getSalary()==salary){
+                throw new EmployeeAlreadyAddedException("Такой сотрудник уже существует");
+            }
+        }
+        if (employees.size() == 0) {
+            employee.setId(1);
+        } else {
+            employee.setId(employees.size() + 1);
+        }
         employees.add(employee);
-        id++;
         return employee;
     }
 
     @Override
-    public Employee removeEmployee(String fullName) {
-        for(int i = 0; i < employees.size(); i++){
-            if(fullName.equals(employees.get(i).getFullName())){
-                employees.remove(i);
-            }
+    public String removeEmployee(int id) {
+        if (employees.size()<id-1 || id<=0){
+            throw new EmployeeNotFound("работника c ID"+" "+ id + " " + "нет в списке");
         }
-        return null;
+        employees.remove(id - 1);
+        for (int i = 0; i < employees.size(); i++) {
+            if(employees.get(i).getId()!=1)
+            employees.get(i).setId(employees.get(i).getId() - 1);
+        }
+        return "Работник удален";
     }
+
     @Override
-    public Employee changeEmployee(String fullName, int salary) {
-        Employee employee = new Employee(fullName,salary);
-        for(int i = 0; i < employees.size(); i++){
-            if(fullName.equals(employees.get(i).getFullName())
-                    &salary==employees.get(i).getSalary()){
-                employee=employees.get(i);
-            }
-
+    public Employee changeEmployee(int id) {
+        if (employees.size()<id-1 || id<=0){
+            throw new EmployeeNotFound("работника c ID"+" "+ id + " " + "нет в списке");
         }
-
-        return employee;
+        return employees.get(id-1);
     }
 
     @Override

@@ -1,14 +1,25 @@
 package pro.sky.HW_252;
 
 public class Employee {
+    private int id;
     private String fullName;
     private int salary;
+
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Employee(String fullName, int salary) {
+
         this.fullName = fullName;
         this.salary = salary;
     }

@@ -9,8 +9,8 @@ public interface EmployeeService {
     int maxSalary();
     int minSalary();
     Employee addEmployee(String fullName, int salary);
-    Employee removeEmployee(String fullName);
+    String removeEmployee(int id);
     public List<Employee> getEmployee();
-    Employee changeEmployee(String fullName, int salary);
+    Employee changeEmployee(int id);
 }
 

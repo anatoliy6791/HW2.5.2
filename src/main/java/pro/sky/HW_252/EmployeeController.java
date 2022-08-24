@@ -48,16 +48,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee/change")
-    public Employee updateEmployee(@RequestParam("name") String name,
-                                   @RequestParam("salary") int salary) {
-        {
-            return employeeService.changeEmployee(name, salary);
-        }
+    public Employee updateEmployee(@RequestParam int id) {
+        return employeeService.changeEmployee(id);
     }
 
     @GetMapping("/employee/delete")
-    public Employee removeEmployee(@RequestParam("name") String name) {
-        return employeeService.removeEmployee(name);
+    public String removeEmployee(@RequestParam("id") int id) {
+        return employeeService.removeEmployee(id);
     }
 
     @GetMapping("/employee/add")
