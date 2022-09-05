@@ -25,6 +25,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     }
 
+
     @Override
     public OptionalDouble averageSalary() {
 

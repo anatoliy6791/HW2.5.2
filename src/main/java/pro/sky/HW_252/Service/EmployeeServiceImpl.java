@@ -13,6 +13,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Map<String, Employee> employees = new HashMap();
 
     @Override
+
     public Employee addEmployee(String fullName, int salary, int department) {
         Employee employee = new Employee(fullName, salary, department);
             if(employees.containsKey(employee.getFullName())){

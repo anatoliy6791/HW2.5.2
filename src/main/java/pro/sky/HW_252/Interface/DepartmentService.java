@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
+
 public interface DepartmentService {
     int sumSalary();
 

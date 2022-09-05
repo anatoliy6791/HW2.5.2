@@ -10,6 +10,7 @@ public class Employee {
         return departmentId;
     }
 
+
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }

@@ -11,6 +11,7 @@ import java.util.OptionalInt;
 
 @RestController
 public class DepartmentController {
+
     private DepartmentService departmentService;
 
     public DepartmentController(DepartmentService departmentService) {
