@@ -4,7 +4,11 @@ public class Employee {
     private int id;
     private String fullName;
     private int salary;
+    private int departmentId;
 
+    public int getDepartmentId() {
+        return departmentId;
+    }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
@@ -18,10 +22,10 @@ public class Employee {
         this.id = id;
     }
 
-    public Employee(String fullName, int salary) {
-
+    public Employee(String fullName, int salary, int departmentId) {
         this.fullName = fullName;
         this.salary = salary;
+        this.departmentId = departmentId;
     }
 
     public String getFullName() {

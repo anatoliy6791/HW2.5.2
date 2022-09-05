@@ -1,18 +1,20 @@
-package pro.sky.HW_252;
+package pro.sky.HW_252.Service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.HW_252.Employee;
+import pro.sky.HW_252.Exception.EmployeeAlreadyAddedException;
+import pro.sky.HW_252.Interface.EmployeeService;
 
 import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    Map<String, Employee> employees = new HashMap();
-
+    public Map<String, Employee> employees = new HashMap();
 
     @Override
-    public Employee addEmployee(String fullName, int salary) {
-        Employee employee = new Employee(fullName, salary);
+    public Employee addEmployee(String fullName, int salary, int department) {
+        Employee employee = new Employee(fullName, salary, department);
             if(employees.containsKey(employee.getFullName())){
                 throw new EmployeeAlreadyAddedException("Такой сотрудник уже существует");
             }
@@ -32,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findEmployee(String fullName) {
         Employee employee = employees.get(fullName);
-        if (employees == null){
+        if (employees != null){
             return employee;
         }
         throw new EmployeeAlreadyAddedException("Такой сотрудник не найден");

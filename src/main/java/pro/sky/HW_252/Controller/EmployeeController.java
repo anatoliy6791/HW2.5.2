@@ -1,10 +1,12 @@
-package pro.sky.HW_252;
+package pro.sky.HW_252.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.HW_252.Employee;
+import pro.sky.HW_252.Interface.EmployeeService;
+
 import java.util.Collection;
-import java.util.Map;
 
 @RestController
 public class EmployeeController {
@@ -34,8 +36,9 @@ public class EmployeeController {
 
     @GetMapping("/employee/add")
     public Employee addEmployee(@RequestParam("name") String name,
-                                @RequestParam("salary") int salary) {
-        return employeeService.addEmployee(name, salary);
+                                @RequestParam("salary") int salary,
+                                @RequestParam("department") int department) {
+        return employeeService.addEmployee(name, salary, department);
     }
 
 

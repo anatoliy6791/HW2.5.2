@@ -1,4 +1,6 @@
-package pro.sky.HW_252;
+package pro.sky.HW_252.Interface;
+
+import pro.sky.HW_252.Employee;
 
 import java.util.Collection;
 
@@ -12,7 +14,9 @@ public interface EmployeeService {
 
    // Employee removeEmployee(String fullName,int salary);
 
-    Employee addEmployee(String fullName, int salary);
+
+
+    Employee addEmployee(String fullName, int salary, int department);
 
     Employee removeEmployee(String fullName);
 
