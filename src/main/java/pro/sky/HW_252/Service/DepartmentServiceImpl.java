@@ -5,14 +5,12 @@ import pro.sky.HW_252.Employee;
 import pro.sky.HW_252.Interface.DepartmentService;
 
 
-import java.util.List;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
-    private EmployeeServiceImpl employeeService;
+    private final EmployeeServiceImpl employeeService;
 
     public DepartmentServiceImpl(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
@@ -33,15 +31,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public OptionalInt maxSalary(int d) {
+    public Employee maxSalary(int d) {
 
-        return employeeService.employees.values().stream().filter(e->e.getDepartmentId()==d).mapToInt(e -> e.getSalary()).max();
+        return employeeService.employees.values().stream().filter(e->e.getDepartmentId()==d).max(Employee::compare).get();
     }
 
     @Override
-    public OptionalInt minSalary(int d) {
+    public Employee minSalary(int d) {
 
-        return employeeService.employees.values().stream().filter(e->e.getDepartmentId()==d).mapToInt(e -> e.getSalary()).min();
+        return employeeService.employees.values().stream().filter(e->e.getDepartmentId()==d).min(Employee::compare).get();
     }
 
     @Override
@@ -49,8 +47,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         return employeeService.employees.values().stream().filter(e -> e.getDepartmentId() == department).collect(Collectors.toList());
     }
     @Override
-    public String all() {
-
-        return employeeService.employees.values().toString();
+    public Map<Integer, List<Employee>> all() {
+        employeeService.addEmployee("Stas", 10,11);
+        employeeService.addEmployee("Sarah", 12,11);
+        employeeService.addEmployee("Hohn", 14,11);
+        employeeService.addEmployee("Bob", 15,12);
+        return  employeeService.employees.values().stream().collect(Collectors.groupingBy(Employee::getDepartmentId));
     }
 }
