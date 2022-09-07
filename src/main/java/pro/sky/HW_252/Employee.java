@@ -10,6 +10,7 @@ public class Employee {
         return departmentId;
     }
 
+
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -32,7 +33,12 @@ public class Employee {
         return fullName;
     }
 
-
+public static int compare(Employee employee, Employee employee1) {
+    if (employee.getSalary() > employee1.getSalary()) {
+        return 1;
+    }
+    return -1;
+}
 
     public int getSalary() {
         return salary;
