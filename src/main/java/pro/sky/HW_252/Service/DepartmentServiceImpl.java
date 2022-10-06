@@ -48,10 +48,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
     @Override
     public Map<Integer, List<Employee>> all() {
-        employeeService.addEmployee("Stas", 10,11);
-        employeeService.addEmployee("Sarah", 12,11);
-        employeeService.addEmployee("Hohn", 14,11);
-        employeeService.addEmployee("Bob", 15,12);
+        employeeService.addEmployee("Stas", "A", 10,11);
+        employeeService.addEmployee("Sarah", "B", 12,11);
+        employeeService.addEmployee("Hohn","C", 14,11);
+        employeeService.addEmployee("Bob", "D", 15,12);
         return  employeeService.employees.values().stream().collect(Collectors.groupingBy(Employee::getDepartmentId));
     }
 }
